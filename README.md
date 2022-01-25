@@ -1,1 +1,1 @@
-# Data-Structures-and-algorithms
+This is my repository for uploading the data structure question which i do on a daily basis . This repository will be useful at the time of placement when i have to revise some of the previously solved questions.
