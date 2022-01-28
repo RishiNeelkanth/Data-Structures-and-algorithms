@@ -1,0 +1,77 @@
+The Boyer-Moore voting algorithm is one of the popular optimal algorithms which is used to find the majority element among the given elements that have more than N/ 2 occurrences.
+This works perfectly fine for finding the majority element which takes 2 traversals over the given elements, which works in O(N) time complexity and O(1) space complexity.
+
+Steps to implement the algorithm :
+
+->Step 1 – Find a candidate with the majority –
+Initialize a variable say i ,votes = 0, candidate =-1 
+Traverse through the array using for loop
+If votes = 0, choose the candidate = arr[i] , make votes=1.
+else if the current element is the same as the candidate increment votes
+else decrement votes.
+
+->Step 2 – Check if the candidate has more than N/2 votes –
+Initialize a variable count =0 and increment count if it is the same as the candidate.
+If the count is >N/2, return the candidate.
+else return -1.
+
+Sample Example:
+
+->Ques: Majority Element
+
+Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+ 
+Example 1:
+Input: nums = [3,2,3]
+Output: 3
+
+Example 2:
+Input: nums = [2,2,1,1,1,2,2]
+Output: 2
+
+Code:
+ 
+**Using Moore's Voting algorithm(optimised)
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+     int n=nums.size();
+        int count=1;
+        int ans=0;
+        for(int i=1;i<n;i++)
+        {
+            if(nums[ans]==nums[i])
+            {
+                count++;
+            }
+            else{
+                count--;
+            }
+            if(count==0)
+            {
+                count=1;
+                ans=i;
+            }
+        }
+        count=0;
+        int temp=nums[ans];
+        for(int i=0;i<n;i++)
+        {
+            if(temp==nums[i])
+            {
+                count++;
+            }
+        }
+        if(count>n/2)
+        {
+            return temp;
+        }
+        else 
+        {
+            return 0;
+        }
+    }
+};
