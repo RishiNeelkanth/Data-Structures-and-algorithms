@@ -24,7 +24,7 @@ Explanation: There is no way to make a positive profit, so we never buy the stoc
 
 Code:
 
-**Brute Force
+**Valley Peak Approach (optimised brute force) TC:O(n)
 
 class Solution {
 public:
