@@ -55,7 +55,8 @@ public:
             }  
                                                //Break is use to terminate the for loop and i contains the value at which if condition satisfies
         }
-        if(i<0)
+        if(i<0)                                        //if i<0 which means the above if condition is not satisfied ans i becomes -1 which simply means that array is in 
+                                                          sorted decreasing order and just needed to reverse to get the desired output
         {
             reverse(nums.begin(),nums.end());
         }
