@@ -52,7 +52,8 @@ public:
             if(nums[i]<nums[i+1])
             {
                 break;
-            }
+            }  
+                                               //Break is use to terminate the for loop and i contains the value at which if condition satisfies
         }
         if(i<0)
         {
@@ -67,6 +68,7 @@ public:
                     break;
                 }
             }
+                                                //Break is use to terminate the for loop and j contains the value at which if condition satisfies
             swap(nums[i],nums[j]);
             reverse(nums.begin()+i+1,nums.end());
         }
