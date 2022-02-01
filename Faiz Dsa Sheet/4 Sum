@@ -1,0 +1,64 @@
+Ques: 4Sum
+
+Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such 
+that:
+
+0 <= a, b, c, d < n
+a, b, c, and d are distinct.
+nums[a] + nums[b] + nums[c] + nums[d] == target
+You may return the answer in any order.
+
+
+->Example 1:
+Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
+->Example 2:
+Input: nums = [2,2,2,2,2], target = 8
+Output: [[2,2,2,2]]
+
+Code:
+
+** Brute Force 
+
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+     int n=nums.size();
+        vector<vector<int>> ans;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                int target_1=target-nums[i]-nums[j];     //a+b+c+d=target -> i+j+left+right=target -> left+right=target-i-j
+                int left=j+1;
+                int right=n-1;
+                while(left<right)
+                {
+                    int sum=nums[left]+nums[right];
+                    if(sum<target_1)
+                    {
+                        left++;
+                    }
+                    else if(sum>target_1)
+                    {
+                        right--;
+                    }
+                    else
+                    {
+                        vector <int> temp={nums[i],nums[j],nums[left],nums[right]};
+                        ans.push_back(temp);
+                        
+                        while( left<right && nums[left]==temp[2] ){left++;}       //prevent duplication of left value
+                        while( left<right && nums[right]==temp[3] ){right--;}     //prevent duplication of right value
+                    }
+                }
+                
+                while(j+1<n && nums[j]==nums[j+1]){j++;}                          //prevent duplication of j value
+            }
+            while(i+1<n && nums[i]==nums[i+1]){i++;}                              //prevent duplication of i value
+        }
+        return ans;
+    }
+};
