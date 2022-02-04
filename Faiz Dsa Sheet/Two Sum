@@ -29,7 +29,7 @@ public:
      {
          for(int j=i+1;j<nums.size();j++)
          {
-                 if(nums[j]==target-nums[i])
+                 if(nums[j]==target-nums[i])       // because a+b=target -> b=target-a
                  {
                      ans.push_back(i);
                      ans.push_back(j);
