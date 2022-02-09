@@ -43,6 +43,6 @@ if(n==3)
 {
 return c;
 }
-ans=geekonaci(a,b,c,n-3)+geekonacci(a,b,c,n-2)+geekonacci(a,b,c,n-1);
+ans=geekonaci(a,b,c,n-1)+geekonacci(a,b,c,n-2)+geekonacci(a,b,c,n-3);
 return ans;
 }
