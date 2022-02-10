@@ -1,0 +1,24 @@
+Ques: Sum of array using recursion
+
+Find the sum of the array
+
+->Example-1
+input: 1,2,3,4,5
+output: 15
+
+Code:
+**recursion
+int findsum(int *arr,int n)
+{
+  if(n==0)
+  {
+    return 0;
+  }
+  if(n==1)
+  {
+    return arr[0];
+  }
+  int remainingpart=findsum(arr+1,n-1);
+  int sum=arr[0]+remainingpart;
+  return sum;
+}
