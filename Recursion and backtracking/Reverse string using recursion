@@ -1,22 +1,36 @@
-Ques: Reverse string using recursion
+Ques: Reverse String
 
-Reverse the given string.
+Write a function that reverses a string. The input string is given as an array of characters s.
 
-->Example-1
-input: a,b,c,d,e
-output: e,d,c,b,a
+You must do this by modifying the input array in-place with O(1) extra memory.
+
+->Example 1:
+Input: s = ["h","e","l","l","o"]
+Output: ["o","l","l","e","h"]
+
+->Example 2:
+input: s = ["H","a","n","n","a","h"]
+Output: ["h","a","n","n","a","H"]
 
 Code:
-** recursion
+** recursion & 2 pointer 
 
-int reverse(string& str,int i,int j)
-{
-  if(i>j)
-  {
-    return;
-  }
-  swap(str[i],str[j]);
-  i++;
-  j--;
-  reverse(str,i,j);
-}
+class Solution {
+public:
+    void reverse(vector<char>& s,int i,int j)
+    {
+        if(i>j)
+        {
+            return;
+        }
+        swap(s[i],s[j]);
+        i++;
+        j--;
+        reverse(s,i,j);
+    }
+    void reverseString(vector<char>& s) {
+        int i=0;
+        int j=s.size()-1;
+        reverse(s,i,j);
+    }
+};
