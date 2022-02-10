@@ -1,0 +1,22 @@
+Ques: Reverse string using recursion
+
+Reverse the given string.
+
+->Example-1
+input: a,b,c,d,e
+output: e,d,c,b,a
+
+Code:
+** recursion
+
+int reverse(string& str,int i,int j)
+{
+  if(i>j)
+  {
+    return;
+  }
+  swap(str[i],str[j]);
+  i++;
+  j--;
+  reverse(str,i,j);
+}
