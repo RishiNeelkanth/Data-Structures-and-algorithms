@@ -5,3 +5,23 @@ Find the key in the array
 ->Example-1
 Input: 1,2,3,4,5,6  Key=4
 Output: 1
+
+Code:
+**recursion
+
+bool linearsearch(int arr[],int n,int k)
+{ 
+  if(n==0)
+  {
+    false;
+  }
+  if(arr[0]==k)
+  {
+    true;
+  }
+  else
+  {
+    int remainingpart = linearsearch(arr+1,n-1,k);
+    return remainingpart;
+  }
+}
