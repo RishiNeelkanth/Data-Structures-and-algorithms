@@ -1,0 +1,7 @@
+Ques: Linear Search using recursion
+
+Find the key in the array
+
+->Example-1
+Input: 1,2,3,4,5,6  Key=4
+Output: 1
