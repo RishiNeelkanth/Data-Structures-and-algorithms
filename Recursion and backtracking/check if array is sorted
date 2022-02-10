@@ -1,0 +1,32 @@
+Ques: Check if array is sorted 
+
+You have to check the given array if it is sorted in a increasing order or not.
+
+->Example-1
+input:1,2,3,4,5,6
+output: 1
+
+->Example-2
+input:4,3,2,5,6
+output: 0
+
+Code:
+** recursion
+
+bool checksort(int *arr,int n)
+{
+  if(n==0||n==1)
+  {
+    return true;
+  }
+  if(arr[0]>arr[1])
+  {
+    return false;
+  }
+  else 
+  {
+  bool remainpart=checksort(arr+1,n-1);
+  return remainpart;
+  }
+  
+}
