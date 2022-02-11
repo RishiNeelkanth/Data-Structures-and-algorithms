@@ -1,0 +1,79 @@
+Ques: Valid Palindrome
+
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. 
+Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+->Example 1:
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+
+->Example 2:
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+
+->Example 3:
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome.
+
+Code:
+** recursion and 2 pointer
+
+class Solution {
+public:
+int isapalin(vector<char>& need2,int p){
+int size= need2.size();
+if(size==1)
+{
+return 0;
+}
+if(p>=size/2)
+{
+return 0;
+}
+else
+{
+    if(need2[p]==need2[size-p-1])
+    {
+        return isapalin(need2,p+1);
+    }
+     else
+     {
+         return 1;  
+     }
+}
+}
+
+string removeSpaces(string str)
+{
+str.erase(remove(str.begin(), str.end(), ' '), str.end());
+return str;
+}
+
+bool isPalindrome(string s) {
+s=removeSpaces(s);
+   transform(s.begin(), s.end(), s.begin(), ::tolower);
+    string need1 = "";
+    for(int i = 0 ; i < s.length() ; i++){
+        if((s[i]>='a' && s[i]<='z') || (s[i]>='0' && s[i]<='9')){
+            need1 += s[i];
+        }
+    }
+    vector<char>need2(need1.begin(),need1.end());
+    int size=need2.size();
+    int p=0;
+    if(isapalin(need2,p)==0)
+    {
+      return true ;
+    }
+    else
+    {
+        return false;
+    }
+}
+};
