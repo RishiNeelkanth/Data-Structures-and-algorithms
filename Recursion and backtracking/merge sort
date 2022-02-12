@@ -1,0 +1,72 @@
+Ques: merge sort
+
+Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red
+, white, and blue.
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+You must solve this problem without using the library's sort function.
+
+->Example 1:
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+
+->Example 2:
+Input: nums = [2,0,1]
+Output: [0,1,2]
+
+Code: 
+** recursion
+
+ int mid=s+(e-s)/2;
+        int len1=mid-s+1;
+        int len2=e-mid;
+        int first[len1];
+        int second[len2];
+        int mainarrayindex=s;
+        for(int i=0;i<len1;i++)
+        {
+            first[i]=nums[mainarrayindex++];
+        }
+        mainarrayindex=mid+1;
+        for(int i=0;i<len2;i++)
+        {
+            second[i]=nums[mainarrayindex++];
+        }
+        int index1=0;
+        int index2=0;
+        mainarrayindex=s;
+        
+        while(index1<len1&&index2<len2)
+        {
+            if(first[index1]<second[index2])
+            {
+                nums[mainarrayindex++]=first[index1++];
+            }
+            else
+            {
+                nums[mainarrayindex++]=second[index2++];
+            }
+        }
+        while(index1<len1)
+        {
+             nums[mainarrayindex++]=first[index1++];
+        }
+        
+        while(index2<len2)
+        {
+             nums[mainarrayindex++]=second[index2++];
+        }
+  }
+    void mergesort(vector<int>& nums,int s,int e)
+    {   if(s>=e)
+        {
+            return;
+        }
+        int mid=s+(e-s)/2;
+        mergesort(nums,s,mid);
+        mergesort(nums,mid+1,e);
+        merge(nums,s,e);
+    }
+    void sortColors(vector<int>& nums) {
+        int n=nums.size();
+        mergesort(nums,0,n-1);
+    }
