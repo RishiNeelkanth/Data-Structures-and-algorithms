@@ -12,7 +12,7 @@ Input: nums = [0]
 Output: [[],[0]]
 
 Code:
-**Recursion
+**Backtracking
 
 class Solution {
 public:
