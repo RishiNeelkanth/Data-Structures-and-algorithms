@@ -23,7 +23,8 @@ class Solution{
         if(N==0)
         {
             return;
-        }
+        }                
+                                        // putting cout<<N<<" "; before the recursive function will give the output as 10 9 8 7 6 5 4 3 2 1
         printNos(N-1);
         cout<<N<<" ";
     }
