@@ -50,14 +50,14 @@ public:
                         vector <int> temp={nums[i],nums[j],nums[left],nums[right]};
                         ans.push_back(temp);
                         
-                        while( left<right && nums[left]==temp[2] ){left++;}       //prevent duplication of left value
-                        while( left<right && nums[right]==temp[3] ){right--;}     //prevent duplication of right value
+                        while( left<right && nums[left]==temp[2] ){left++;}             //prevent duplication of left value
+                        while( left<right && nums[right]==temp[3] ){right--;}           //prevent duplication of right value
                     }
                 }
                 
-                while(j+1<n && nums[j]==nums[j+1]){j++;}                          //prevent duplication of j value
+                while(j+1<n && nums[j]==nums[j+1]){j++;}                                //prevent duplication of j value
             }
-            while(i+1<n && nums[i]==nums[i+1]){i++;}                              //prevent duplication of i value
+            while(i+1<n && nums[i]==nums[i+1]){i++;}                                    //prevent duplication of i value
         }
         return ans;
     }
