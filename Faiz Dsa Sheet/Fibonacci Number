@@ -32,7 +32,7 @@ int fib(int N) {
         return fib(N-1) + fib(N-2);
     }
 
-***DP Approach
+**DP Approach
 
  int fib(int N) {
         if(N < 2)
@@ -45,7 +45,7 @@ int fib(int N) {
         return memo[N];
     }
 
-**** Imperative Approach or Bottom Up DP (Best tc)
+** Imperative Approach or Bottom Up DP (Best tc)
 
 class Solution {
 public:
