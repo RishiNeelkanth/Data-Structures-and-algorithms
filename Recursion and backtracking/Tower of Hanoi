@@ -37,5 +37,25 @@ as follows in the example and total
 7 steps will be taken.
 
 Code:
-**
+**Recursion
+
+void solve(int N,int from, int to, int aux, long long &c)
+{
+   if(N==1)
+   {
+       c++;
+       cout<<"move disk "<<N<<" from rod "<<from<<" to rod "<<to<<endl;
+       return;
+   }
+   solve(N-1,from,aux,to,c);
+   cout<<"move disk "<<N<<" from rod "<<from<<" to rod "<<to<<endl;
+   c++;
+   solve(N-1,aux,to,from,c);
+}
+long long toh(int N, int from, int to, int aux) 
+{
+   long long c=0;
+   solve(N,from,to,aux,c);
+   return c;
+}
 
