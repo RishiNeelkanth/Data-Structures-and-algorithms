@@ -47,3 +47,43 @@ public:
         return prev;
     }
 };
+
+** Recursion    T.C=O(n)
+
+class Solution {
+public:
+    void reverse(ListNode* &head,ListNode* cur,ListNode* prev)
+    {
+        if(cur==NULL)
+        {
+            head=prev;
+            return;
+        }
+        reverse(head,cur->next,cur);
+        cur->next=prev;
+    }
+    ListNode* reverseList(ListNode* head) {
+       ListNode* cur=head;
+       ListNode* prev=NULL; 
+        reverse(head, cur, prev);
+        return head;
+    }
+    
+    
+    **************OR*************************
+    
+    class Solution {
+public:
+   
+    ListNode* reverseList(ListNode* head) {
+     if(head==NULL||head->next==NULL)
+     {
+         return head;
+     }
+        ListNode* chotahead=reverseList(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return chotahead;
+    }
+};
+};
