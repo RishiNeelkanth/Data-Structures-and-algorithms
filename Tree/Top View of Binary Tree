@@ -32,3 +32,38 @@ Output: 40 20 10 30 100
 Code:
 ** recursion 
 
+class Solution
+{
+    map<int,pair<int,int>> myMap; //Map<width,pair<level,data>>
+    public:
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    void topView(Node* root, int width, int level)
+    {
+        if(!root) return;
+        auto iter = myMap.find(width) ;
+        if(iter == myMap.end() ){
+            myMap[width] = {level,root->data};
+            //cout<<width<< "  "<<root->data<<endl;
+        } else {
+            if(iter->second.first > level){
+                myMap[width] = {level,root->data};
+            }
+        }
+        
+        topView(root->left, width-1, level+1);
+        topView(root->right, width+1, level+1);
+    }
+    vector<int> topView(Node *root)
+    {
+        vector<int> retVec;
+        topView(root, 0, 1);
+        
+        for(auto it : myMap){
+            retVec.push_back(it.second.second);
+        }
+        
+        return retVec;
+    }
+
+};
