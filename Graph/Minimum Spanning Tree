@@ -1,0 +1,22 @@
+QUES : Minimum Spanning Tree 
+
+Given a weighted, undirected and connected graph of V vertices and E edges. The task is to find the sum of weights of the edges of the Minimum Spanning Tree.
+
+ 
+->Example 1:
+Input:
+Output:
+4
+Explanation:
+The Spanning Tree resulting in a weight
+of 4 is shown above.
+
+->Example 2:
+Input:
+Output:
+5
+Explanation:
+Only one Spanning Tree is possible
+which has a weight of 5.
+
+CODE
