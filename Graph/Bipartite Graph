@@ -2,7 +2,6 @@ Ques:Bipartite Graph
 
 Given an adjacency list of a graph adj  of V no. of vertices having 0 based index. Check whether the graph is bipartite or not.
  
-
 ->Example 1:
 Input: 
 Output: 1
