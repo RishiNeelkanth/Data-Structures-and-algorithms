@@ -15,10 +15,7 @@ solve this problem. Bellman in 1958 published an article devoted specifically to
 the algorithm in the form in which it is known to us now.
 
 
-Unlike many other graph algorithms, for Bellman-Ford algorithm, it is more convenient to represent the graph using a single list of all edges (instead of  lists of edges - edges from each vertex). We start the implementation with a structure  for representing the edges. The input to the algorithm are numbers , , list  of edges and the starting vertex . All the vertices are numbered  to .
 
-The simplest implementation
-The constant  denotes the number "infinity" — it should be selected in such a way that it is greater than all possible path lengths.
 
 
 Code:
