@@ -31,4 +31,42 @@ There are two islands one is colored in blue
 and other in orange.
 
 CODE:
-**
+**Using DFS
+
+class Solution {
+public:
+    void isisland(vector<vector<char>>& m,int x,int y,int r,int c)
+    {
+        if(x>=r || x<0 || y>=c || y<0 ||m[x][y]!='1')
+        {
+            return;
+        }
+        m[x][y]='2';
+        isisland(m,x+1,y,r,c); //down
+        isisland(m,x-1,y,r,c); // top
+        isisland(m,x,y+1,r,c); // right
+        isisland(m,x,y-1,r,c); // left
+        
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int row=grid.size();
+        if(!row) return 0;
+        int column=grid[0].size();
+        int noi=0;
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<column;j++)
+            {
+                if(grid[i][j]=='1')
+                {
+                    isisland(grid,i,j,row,column);
+                    noi++;
+                }
+            }
+        }
+        return noi;
+    }
+};
+
+** using BFS
+
