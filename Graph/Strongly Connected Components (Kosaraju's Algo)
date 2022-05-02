@@ -21,3 +21,69 @@ So, there's only one SCC.
 
 CODE::
 
+class Solution
+{
+	public:
+	unordered_map<int,vector<int>> rev;
+	void dfs1(int i,vector<bool>& visited, vector<int> adj[], stack<int> &s)
+	{
+	    visited[i]=true;
+	    for(auto it : adj[i])
+	    {
+	        if(!visited[it])
+	        {
+	            dfs1(it,visited,adj,s);
+	        }
+	    }
+	    s.push(i);
+	}
+	void reverse(int V,vector<int> adj[])
+    {
+	    for(int i=0;i<V;++i)
+	        {
+		        for(int j: adj[i])
+			        rev[j].push_back(i);
+	        }
+    }
+    
+    void dfs2(int i,vector<bool>& visited)
+	{
+	    visited[i]=true;
+	    for(auto it : rev[i])
+	    {
+	        if(!visited[it])
+	        {
+	            dfs2(it,visited);
+	        }
+	    }
+	}
+	//Function to find number of strongly connected components in the graph.
+    int kosaraju(int V, vector<int> adj[])
+    {
+        stack <int> s;
+        vector<bool> visited(V,false);
+        for(int i=0;i<V;i++)
+        {
+            if(!visited[i])
+            {
+                dfs1(i,adj,visited,s);
+            }
+        }
+        reverse(V,adj);
+        for(int i=0;i<V;i++)
+        {
+            visited[i]=false;
+        }
+        while(!s.empty())
+        {
+            int curr=s.top();
+            s.pop();
+        
+            if(!visited[curr])
+            {
+                dfs2(curr,visited);
+            }
+        }
+    }
+};
+
