@@ -20,7 +20,6 @@ All of the nodes are connected to each other.
 So, there's only one SCC.
 
 CODE::
-
 class Solution
 {
 	public:
@@ -66,7 +65,7 @@ class Solution
         {
             if(!visited[i])
             {
-                dfs1(i,adj,visited,s);
+                dfs1(i,visited,adj,s);
             }
         }
         reverse(V,adj);
@@ -74,16 +73,18 @@ class Solution
         {
             visited[i]=false;
         }
+        int ans = 0;
         while(!s.empty())
         {
             int curr=s.top();
             s.pop();
-        
+           
+            
             if(!visited[curr])
-            {
+            {ans++;
                 dfs2(curr,visited);
             }
         }
+        return ans;
     }
 };
-
