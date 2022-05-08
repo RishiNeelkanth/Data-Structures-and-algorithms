@@ -21,3 +21,29 @@ Output: [[2,2,2],[2,2,2]]
 Code:
 **DFS
 
+class Solution {
+public:
+    void change(int row,int col,int sr, int sc,vector<vector<int>>& image,int newcolor,int source)
+    {
+        if(sr<0 || sc<0 || sr>=row || sc>=col || image[sr][sc]!=source)
+        {
+            return;
+        }
+        image[sr][sc]=newcolor;
+        change(row,col,sr+1,sc,image,newcolor,source);
+        change(row,col,sr-1,sc,image,newcolor,source);
+        change(row,col,sr,sc+1,image,newcolor,source);
+        change(row,col,sr,sc-1,image,newcolor,source);
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+     if(newColor==image[sr][sc])
+     {
+         return image;
+     }
+        int row=image.size();
+        int col=image[0].size();
+        int source=image[sr][sc];
+        change(row,col,sr,sc,image,newColor,source);
+        return image;
+    }
+};
