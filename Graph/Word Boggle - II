@@ -1,0 +1,87 @@
+QUES:Word Boggle - II 
+
+Given a dictionary of words and an M x N board where every cell has one character. Find all possible different words from the dictionary that can be formed by
+a sequence of adjacent characters on the board. We can move to any of 8 adjacent characters, but a word should not have multiple instances of the same cell.
+
+
+->Example 1:
+Input: 
+N = 1
+dictionary = {"CAT"}
+R = 3, C = 3
+board = {{C,A,P},{A,N,D},{T,I,E}}
+Output:
+CAT
+Explanation: 
+C A P
+A N D
+T I E
+Words we got is denoted using same color.
+
+->Example 2:
+Input:
+N = 4
+dictionary = {"GEEKS","FOR","QUIZ","GO"}
+R = 3, C = 3 
+board = {{G,I,Z},{U,E,K},{Q,S,E}}
+Output:
+GEEKS QUIZ
+Explanation: 
+G I Z
+U E K
+Q S E 
+Words we got is denoted using same color.
+
+
+CODE:
+
+vector<int> r = {-1,1,0,0,-1,1,-1,1};
+vector<int> c = {0,0,-1,1,-1,1,1,-1};
+    bool dfs(vector<vector<char>>& board,string& word,int row,int col,int ind)
+    {
+        if(ind==word.size()){return true;}
+         if(row<0||col<0||row>=board.size()||col>=board[0].size()||board[row][col]!=word[ind])
+        return false;
+        char ch = board[row][col];
+        board[row][col] = '.';
+        for(int i = 0;i<8;i++){
+            if(dfs(board,word ,row+r[i],col+c[i],ind+1)){
+                board[row][col] = ch;
+                return true;
+            }
+        }
+        board[row][col] = ch;
+        return false;
+        
+    }
+    bool search(vector<vector<char>>& board,string & word)
+    {
+        int n=board.size();
+        int m=board[0].size();
+        for(int  i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(dfs(board,word,i,j,0)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+	vector<string> wordBoggle(vector<vector<char> >& board, vector<string>& dictionary) {
+	   vector<string> ans;
+	   vector<string> dup;
+	   for(auto it : dictionary)
+	   {
+	       if(search(board,it)){
+	           if(find(dup.begin(),dup.end(),it)==dup.end())
+	           {
+	               ans.push_back(it);
+	               dup.push_back(it);
+	           }
+	       }
+	   }
+	   return ans;
+	}
+};
