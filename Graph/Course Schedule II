@@ -24,3 +24,28 @@ Output: [0]
 
 CODE:
 
+class Solution {
+public:
+        vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>>graph(numCourses,vector<int>());
+        vector<int>rank(numCourses,0);
+        for(const auto&p:prerequisites){
+            graph[p[1]].emplace_back(p[0]);
+            ++rank[p[0]];
+        }
+        queue<int>q;
+        unordered_set<int>visited;
+        vector<int>res;
+        for(int i=0;i<rank.size();++i) if(!rank[i]) q.emplace(i);
+        while(!q.empty()){
+            int f = q.front();
+            q.pop();
+            if(!visited.insert(f).second)    continue;
+            res.emplace_back(f);
+            for(int i:graph[f]) if(!--rank[i])  q.emplace(i);
+        }
+        if(accumulate(begin(rank),end(rank),0)) return {};
+        return res;
+    }
+};
+
