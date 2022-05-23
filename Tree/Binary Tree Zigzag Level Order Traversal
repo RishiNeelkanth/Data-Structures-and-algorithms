@@ -18,7 +18,7 @@ Input: root = []
 Output: []
 
 Code:
-** Recursion
+** BFS
 
 /**
  * Definition for a binary tree node.
