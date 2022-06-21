@@ -43,10 +43,10 @@ bool search(struct Node* root, int x) {
     }
     if(x<root->data)
     {
-        return search(root->left,x);
+        search(root->left,x);
     }
     else 
     {
-        return search(root->right,x);
+        search(root->right,x);
     }
 }
