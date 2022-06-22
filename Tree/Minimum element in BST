@@ -1,0 +1,41 @@
+QUES : Minimum element in BST 
+
+Given a Binary Search Tree. The task is to find the minimum element in this given BST.
+
+->Example 1:
+Input:
+           5
+         /    \
+        4      6
+       /        \
+      3          7
+     /
+    1
+Output: 1
+
+->Example 2:
+Input:
+             9
+              \
+               10
+                \
+                 11
+Output: 9
+
+CODE : 
+
+int minValue(Node* root) {
+    if(root == NULL) {
+       return -1;
+   }
+    int ans=root->data;
+    Node* temp=root;
+    while(temp->left!=NULL)
+    {
+        
+        temp=temp->left;
+        ans=min(ans,temp->data); 
+    }
+   
+    return ans;
+}
