@@ -1,0 +1,36 @@
+QUES : 01Knapsack
+
+
+CODE :
+USING MEMOIZATION
+
+class Solution
+
+{
+   public:
+   //C++ | Memoization (DP) | optimal code 
+ int knapSack1(int W, int wt[], int val[], int n,vector<vector<int>> &t){
+   
+      if(n==0||W==0){
+         return 0;
+        }
+   
+       if(t[n][W]!=-1){
+         return t[n][W];
+         }
+     if(wt[n-1]<=W)
+     return t[n][W]=max(val[n-1]+knapSack1(W-wt[n-1],wt,val,n-1,t),knapSack1(W,wt,val,n-1,t));
+     else
+          return t[n][W]=knapSack1(W,wt,val,n-1,t);
+   
+   }
+   //Function to return max value that can be put in knapsack of capacity W.
+   int knapSack(int W, int wt[], int val[], int n) 
+    { 
+       vector<vector<int>> t(n+1,vector<int>(W+1,-1));
+       
+     return  knapSack1(W,wt,val,n,t);
+   
+     
+   }
+};
