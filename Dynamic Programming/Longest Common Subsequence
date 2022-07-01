@@ -1,0 +1,136 @@
+QUES : Longest Common Subsequence
+
+Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
+A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of 
+the remaining characters.
+For example, "ace" is a subsequence of "abcde".
+A common subsequence of two strings is a subsequence that is common to both strings.
+
+ 
+->Example 1:
+Input: text1 = "abcde", text2 = "ace" 
+Output: 3  
+Explanation: The longest common subsequence is "ace" and its length is 3.
+
+->Example 2:
+Input: text1 = "abc", text2 = "abc"
+Output: 3
+Explanation: The longest common subsequence is "abc" and its length is 3.
+
+->Example 3:
+Input: text1 = "abc", text2 = "def"
+Output: 0
+Explanation: There is no such common subsequence, so the result is 0.
+
+CODE :
+
+****Using recursion
+
+
+class Solution {
+public:
+    int solve(string s1, string s2,int n,int m)
+    {
+        if(n==0 || m==0)
+        {
+            return 0;
+        }
+        
+        if(s1[n-1]==s2[m-1])
+        {
+            return 1+solve(s1,s2,n-1,m-1);
+        }
+        else
+        {
+            return max(solve(s1,s2,n-1,m),solve(s1,s2,n,m-1));
+        }
+    }
+    int longestCommonSubsequence(string s1, string s2) {
+        int n=s1.size();
+        int m=s2.size();
+        return solve (s1,s2,n,m);
+    }
+};
+
+
+
+
+****Using Memoization
+
+
+class Solution {
+public:
+    int solve(string s1, string s2,int n,int m,vector<vector<int>> &t)
+    {
+        if(n==0 || m==0)
+        {
+            return 0;
+        }
+        if(t[n][m]!=-1)
+        {
+            return t[n][m];
+        }
+        if(s1[n-1]==s2[m-1])
+        {
+            return t[n][m]=1+solve(s1,s2,n-1,m-1,t);
+        }
+        else
+        {
+            return t[n][m]=max(solve(s1,s2,n-1,m,t),solve(s1,s2,n,m-1,t));
+        }
+    }
+    int longestCommonSubsequence(string s1, string s2) {
+        int n=s1.size();
+        int m=s2.size();
+        vector<vector<int>> t(n+1,vector<int>(m+1,-1));
+        return solve (s1,s2,n,m,t);
+    }
+};
+
+
+
+**** Using tabulation
+
+
+class Solution {
+public:
+    int solve(string s1, string s2,int n,int m,vector<vector<int>> &t)
+    {
+        if(n==0 || m==0)
+        {
+            return 0;
+        }
+        if(t[n][m]!=-1)
+        {
+            return t[n][m];
+        }
+        if(s1[n-1]==s2[m-1])
+        {
+            return t[n][m]=1+solve(s1,s2,n-1,m-1,t);
+        }
+        else
+        {
+            return t[n][m]=max(solve(s1,s2,n-1,m,t),solve(s1,s2,n,m-1,t));
+        }
+    }
+    int longestCommonSubsequence(string s1, string s2) {
+        int n=s1.size();
+        int m=s2.size();
+        vector<vector<int>> t(n+1,vector<int>(m+1,0));
+        for(int i=1;i<n+1;i++)
+        {
+            for(int j=1;j<m+1;j++)
+            {
+                if(s1[i-1]==s2[j-1])
+                {
+                    t[i][j]=1+t[i-1][j-1];
+                }
+                else
+                {
+                    t[i][j]=max(t[i-1][j],t[i][j-1]);
+                }
+            }
+        }
+        return t[n][m];
+    }
+};
