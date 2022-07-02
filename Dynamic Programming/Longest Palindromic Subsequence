@@ -1,26 +1,56 @@
- Longest Palindromic Subsequence
-Medium
+QUES : Longest Palindromic Subsequence
 
-5571
-
-252
-
-Add to List
-
-Share
 Given a string s, find the longest palindromic subsequence's length in s.
-
 A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
 
  
-
-Example 1:
-
+->Example 1:
 Input: s = "bbbab"
 Output: 4
 Explanation: One possible longest palindromic subsequence is "bbbb".
-Example 2:
 
+->Example 2:
 Input: s = "cbbd"
 Output: 2
 Explanation: One possible longest palindromic subsequence is "bb".
+
+
+CODE:
+***** USING Tabulation
+
+class Solution {
+public:
+    int longestPalindromeSubseq(string X) {
+    
+        string Y=X;
+        reverse(Y.begin(),Y.end());
+        int n=X.size();
+        int m=Y.size();
+        vector<vector<int>> t(m+1,vector<int> (n+1));
+        for(int i=0;i<m+1;i++)
+        {
+            for(int j=0;j<n+1;j++)
+            {
+                if(i==0 || j==0)
+                {
+                    t[i][j]=0;
+                }
+            }
+        }
+        for(int i=1;i<m+1;i++)
+        {
+            for(int j=1;j<n+1;j++)
+            {
+                if(X[i-1]==Y[j-1])
+                {
+                    t[i][j]=1+t[i-1][j-1];
+                }
+                else
+                {
+                    t[i][j]=max(t[i-1][j],t[i][j-1]);
+                }
+            }
+        }
+        return t[m][n];
+    }
+};
