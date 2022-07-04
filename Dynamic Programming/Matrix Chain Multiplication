@@ -34,5 +34,73 @@ CODE :
 
 USING Recursion
 
+class Solution{
+public:
+    int solve(int i,int j , int arr[])
+    {
+        int mini=INT_MAX;
+        if(i>=j)
+        {
+            return 0;
+        }
+        for(int k=i;k<=j-1;k++)
+        {
+            int temp=solve(i,k,arr) + solve(k+1,j,arr)+(arr[i-1]*arr[k]*arr[j]);
+            mini=min(mini,temp);
+        }
+        return mini;
+    }
+    int matrixMultiplication(int N, int arr[])
+    {
+        int i;
+        int j;
+        if(N>0)
+        {
+            i=1;
+            j=N-1;
+        }
+     return solve(i,j,arr);   
+    }
+};
+
+
+Using memoization
+
+class Solution{
+public:
+    int solve(int i,int j , int arr[],int n , vector<vector<int>> &t)
+   
+    {
+        int mini=INT_MAX;
+        if(i>=j)
+        {
+            return 0;
+        }
+        if(t[i][j] != -1)
+        {
+            return t[i][j];
+        }
+        for(int k=i;k<=j-1;k++)
+        {
+            int temp=solve(i,k,arr,n,t) + solve(k+1,j,arr,n,t)+(arr[i-1]*arr[k]*arr[j]);
+            mini=min(mini,temp);
+        }
+        return t[i][j]= mini;
+    }
+    int matrixMultiplication(int N, int arr[])
+    {
+        int i;
+        int j;
+        if(N>0)
+        {
+            i=1;
+            j=N-1;
+        }
+         vector<vector<int>> t(N+1,vector<int>(N+1,-1));
+     return solve(i,j,arr,N,t);   
+    }
+};
+
+
 
 
