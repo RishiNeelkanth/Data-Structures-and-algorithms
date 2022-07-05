@@ -1,0 +1,215 @@
+QUES : Palindromic Partitioning 
+
+Given a string str, a partitioning of the string is a palindrome partitioning if every sub-string of the partition is a palindrome. Determine the fewest cuts 
+needed for palindrome partitioning of the given string.
+
+
+->Example 1:
+Input: str = "ababbbabbababa"
+Output: 3
+Explaination: After 3 partitioning substrings 
+are "a", "babbbab", "b", "ababa".
+
+
+->Example 2:
+Input: str = "aaabba"
+Output: 1
+Explaination: The substrings after 1
+partitioning are "aa" and "abba".
+
+
+
+CODE :
+
+******Using recursion
+
+class Solution{
+public:
+
+    bool ispalindrome(int i,int j,string str)
+    {
+        if(i==j)
+        {
+            return true;
+        }
+        if(i>j)
+        {
+            return true;
+        }
+        while(i<j)
+        {
+            if(str[i]!=str[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int solve(int i,int j,string str)
+    {
+        if(i>=j)
+        {
+            return 0;
+        }
+        if(ispalindrome(i,j,str)==true)
+        {
+            return 0;
+        }
+         
+        int mini=INT_MAX;
+        for(int k=i;k<=j-1;k++)
+        {
+            int temp=1+solve(i,k,str)+solve(k+1,j,str);
+            mini=min(mini,temp);
+        }
+        return t[i][j]=mini;
+    }
+    int palindromicPartition(string str)
+    {
+        int n=str.size();
+        int i=0;
+        int j=n-1;
+        return solve(i,j,str);
+    }
+};
+
+
+
+
+********Using memoization
+
+
+class Solution{
+public:
+
+    bool ispalindrome(int i,int j,string str)
+    {
+        if(i==j)
+        {
+            return true;
+        }
+        if(i>j)
+        {
+            return true;
+        }
+        while(i<j)
+        {
+            if(str[i]!=str[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int solve(int i,int j,string str)
+    {
+        if(i>=j)
+        {
+            return 0;
+        }
+        if(ispalindrome(i,j,str)==true)
+        {
+            return 0;
+        }
+         if(t[i][j] != -1)
+        {
+            return t[i][j];
+        }
+        int mini=INT_MAX;
+        for(int k=i;k<=j-1;k++)
+        {
+            int temp=1+solve(i,k,str)+solve(k+1,j,str);
+            mini=min(mini,temp);
+        }
+        return t[i][j]=mini;
+    }
+    int palindromicPartition(string str)
+    {
+        int n=str.size();
+        int i=0;
+        int j=n-1;
+        vector<vector<int>> t(n+1,vector<int> (n+1,-1));
+        return solve(i,j,str,t);
+    }
+};
+
+
+
+***********Using memoization with optimizattion
+
+class Solution{
+public:
+
+    bool ispalindrome(int i,int j,string str)
+    {
+        if(i==j)
+        {
+            return true;
+        }
+        if(i>j)
+        {
+            return true;
+        }
+        while(i<j)
+        {
+            if(str[i]!=str[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int solve(int i,int j,string str,vector<vector<int>> &t)
+    {
+        if(i>=j)
+        {
+            return 0;
+        }
+        if(ispalindrome(i,j,str)==true)
+        {
+            return 0;
+        }
+         if(t[i][j] != -1)
+        {
+            return t[i][j];
+        }
+        int mini=INT_MAX;
+        for(int k=i;k<=j-1;k++)
+        {
+            int left,right;
+            if(t[i][k] != -1)
+            {
+                left=t[i][k];
+            }
+            else{
+                t[i][j]=solve(i,k,str,t);
+                left=t[i][j];
+            }
+            if(t[k+1][j] != -1)
+            {
+                 right=t[k+1][j];
+            }
+            else{
+                t[i][j]=solve(k+1,j,str,t);
+                right=t[i][j];
+            }
+            int temp=1+left+right;
+            mini=min(mini,temp);
+        }
+        return t[i][j]=mini;
+    }
+    int palindromicPartition(string str)
+    {
+        int n=str.size();
+        int i=0;
+        int j=n-1;
+        vector<vector<int>> t(n+1,vector<int> (n+1,-1));
+        return solve(i,j,str,t);
+    }
+};
