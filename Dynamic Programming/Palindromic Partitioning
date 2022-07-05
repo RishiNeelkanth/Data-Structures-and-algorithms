@@ -213,3 +213,65 @@ public:
         return solve(i,j,str,t);
     }
 };
+
+
+
+*******MEMOIZATION MOST OPTIMAL
+
+class Solution{
+public:
+
+    bool ispalindrome(int i,int j,string str)
+    {
+        if(i==j)
+        {
+            return true;
+        }
+        if(i>j)
+        {
+            return true;
+        }
+        while(i<j)
+        {
+            if(str[i]!=str[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int solve(int i,int j,string str,vector<vector<int>> &t)
+    {
+        if(i>=j)
+        {
+            return 0;
+        }
+        if(ispalindrome(i,j,str)==true)
+        {
+            return 0;
+        }
+         if(t[i][j] != -1)
+        {
+            return t[i][j];
+        }
+        int mini=INT_MAX;
+        for(int k=i;k<=j-1;k++)
+        {
+            if(ispalindrome( i, k,str)){                         
+                int temp = solve ( k+1, j,str, t) + 1;
+                mini = min (mini, temp);
+            }
+        }
+        return t[i][j]=mini;
+    }
+    int palindromicPartition(string str)
+    {
+        int n=str.size();
+        int i=0;
+        int j=n-1;
+        vector<vector<int>> t(n+1,vector<int> (n+1,-1));
+        return solve(i,j,str,t);
+    }
+};
