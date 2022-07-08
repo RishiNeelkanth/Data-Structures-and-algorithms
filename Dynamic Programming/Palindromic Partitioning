@@ -103,7 +103,6 @@ public:
             i++;
             j--;
         }
-        return true;
     }
     int solve(int i,int j,string str)
     {
