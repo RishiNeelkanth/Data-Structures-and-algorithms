@@ -126,7 +126,7 @@ int dp[205][205][2];
     }
     int countWays(int N, string S){
         
-        memset(dp,-1,sizeof(dp));;
+        memset(dp,-1,sizeof(dp));
         return solve(S,0,N-1,1);
     }
 };
@@ -193,6 +193,6 @@ int dp[205][205][2];
     }
     int countWays(int N, string S){
         
-        memset(dp,-1,sizeof(dp));;
+        memset(dp,-1,sizeof(dp));
         return solve(S,0,N-1,1);
     }
