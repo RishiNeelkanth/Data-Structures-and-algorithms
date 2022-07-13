@@ -1,13 +1,11 @@
 QUES : Bellman-Ford Algorithm
 
 Single source shortest path with negative weight edges
-
-Suppose that we are given a weighted directed graph G with n vertices and m edges, and some specified vertex v. You want to find the length of shortest paths from vertex v
-to every other vertex.
+Suppose that we are given a weighted directed graph G with n vertices and m edges, and some specified vertex v. You want to find the length of shortest paths 
+from vertex v to every other vertex.
 Unlike the Dijkstra algorithm, this algorithm can also be applied to graphs containing negative weight edges . However, if the graph contains a negative cycle, then, 
-clearly, the shortest path to some vertices may not exist (due to the fact that the weight of the shortest path must be equal to minus infinity); however, this algorithm 
-can be modified to signal the presence of a cycle of negative weight, or even deduce this cycle.
-
+clearly, the shortest path to some vertices may not exist (due to the fact that the weight of the shortest path must be equal to minus infinity); however, this 
+algorithm can be modified to signal the presence of a cycle of negative weight, or even deduce this cycle.
 The algorithm bears the name of two American scientists: Richard Bellman and Lester Ford. Ford actually invented this algorithm in 1956 during the study of 
 another mathematical problem, which eventually reduced to a subproblem of finding the shortest paths in the graph, and Ford gave an outline of the algorithm to 
 solve this problem. Bellman in 1958 published an article devoted specifically to the problem of finding the shortest path, and in this article he clearly formulated
@@ -15,6 +13,8 @@ the algorithm in the form in which it is known to us now.
 
 
 Code:
+
+
 struct edge
 {
     int a, b, cost;
