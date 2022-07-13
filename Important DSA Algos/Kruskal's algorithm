@@ -1,5 +1,6 @@
 Kruskal's algorithm
 
+
 Kruskal's algorithm initially places all the nodes of the original graph isolated from each other, to form a forest of single node trees, and then gradually 
 merges these trees, combining at each iteration any two of all the trees with some edge of the original graph. Before the execution of the algorithm, all edges 
 are sorted by weight (in non-decreasing order). Then begins the process of unification: pick all edges from the first to the last (in sorted order), and if the ends 
@@ -7,11 +8,12 @@ of the currently picked edge belong to different subtrees, these subtrees are co
 all the vertices will belong to the same sub-tree, and we will get the answer.
 
 ->The simplest implementation
-
 The following code directly implements the algorithm described above, and is having  time complexity. Sorting edges requires  (which is the same as ) operations.
 Information regarding the subtree to which a vertex belongs is maintained with the help of an array tree_id[] - for each vertex v, tree_id[v] stores the number of 
 the tree , to which v belongs. For each edge, whether it belongs to the ends of different trees, can be determined in . Finally, the union of the two trees is
 carried out in  by a simple pass through tree_id[] array. Given that the total number of merge operations is , we obtain the asymptotic behavior of .
+
+
 
 CODE:
 
