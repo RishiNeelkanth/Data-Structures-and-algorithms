@@ -37,12 +37,13 @@ USING MEMOIZATION
 
 CODE :
 
+****  using Memoization
+
 #include<bits/stdc++.h>
 using namespace std;
-int n=10e5+10;
-vector<int> h;
-vector<int> dp(n,-1);
-int find(int i)
+vector<int>h;
+
+int find(int i,vector<int> &dp)
 {
     if(i==0)
     {
@@ -50,27 +51,29 @@ int find(int i)
     }
     if(dp[i]!=-1)
     {
-    return dp[i];
+        return dp[i];
     }
     int cost=INT_MAX;
-    cost=min(cost,find(i-1)+abs(h[i]-h[i-1]));
+    cost=min(cost,find(i-1,dp)+abs(h[i]-h[i-1]));
     if(i>1)
     {
-        cost=min(cost,find(i-2)+abs(h[i]-h[i-2]));
+        cost=min(cost,find(i-2,dp)+abs(h[i]-h[i-2]));
     }
     return dp[i]=cost;
 }
 int main()
 {
-    int N;
-    cin>>N;
     
-    for(int i=0;i<N;i++)
+    int n;
+    cin>>n;
+    vector<int> dp(n,-1);
+    int temp;
+    for(int i=0;i<n;i++)
     {
-        h.push_back(h[i]);
+        cin>>temp;
+        h.push_back(temp);
     }
-    cout<<find(N-1);
+    cout<<find(n-1,dp);
     return 0;
 }
-
 
