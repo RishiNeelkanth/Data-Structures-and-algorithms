@@ -1,0 +1,121 @@
+QUES : Painting the Fence
+
+Given a fence with n posts and k colors, find out the number of ways of painting the fence so that not more than two consecutive fences have the same colors.
+Since the answer can be large return it modulo 10^9 + 7.
+
+
+-
+->Example 1:
+Input:
+N=3,  K=2 
+Output: 6
+Explanation: 
+We have following possible combinations:
+
+
+->Example 2:
+Input:
+N=2,  K=4
+Output: 16
+
+
+CODE : 
+
+********USING Memoization
+
+class Solution{
+    public:
+    long long dp[5001];
+    long long mod=1000000007;
+    long long solve (int n,int k)
+    {
+        if(n==1)
+        {
+            return k;
+        }
+        if(n==2)
+        {
+            return ((k+(k*(k-1)))%mod);
+        }
+        if(dp[n]!=-1)
+        {
+            return dp[n];
+        }
+        long long same=(solve(n-2,k)*(k-1)%mod);
+        long long diff=(solve(n-1,k)*(k-1)%mod);
+        long long ans=same + diff;
+        return dp[n]=ans%mod;
+    }
+    long long countWays(int n, int k){
+        memset(dp,-1,sizeof(dp));
+        return solve(n,k);
+    }
+};
+
+
+**********Using Tabulation
+
+class Solution{
+    public:
+   
+    long long mod=1000000007;
+    long long solve (int n,int k)
+    {
+        long long dp[5001];
+        memset(dp,0,sizeof(dp));
+        dp[0]=0;
+        dp[1]=k;
+        dp[2]=((k+(k*(k-1)))%mod);
+        
+        for(int i=3;i<=n;i++)
+        {
+            long long same=(dp[i-2]*(k-1)%mod);
+            long long diff=(dp[i-1]*(k-1)%mod);
+             dp[i]=((same + diff)%mod);
+        }
+        return dp[n];
+    }
+    long long countWays(int n, int k){
+       
+        return solve(n,k);
+    }
+};
+
+
+********** using space optimisation
+
+
+class Solution{
+    public:
+   
+    long long mod=1000000007;
+    long long solve (int n,int k)
+    {
+        long long dp[5001];
+        memset(dp,0,sizeof(dp));
+        if(n==1)
+        {
+            return k;
+        }
+        // if(n==2)
+        // {
+        //     return ((k+(k*(k-1)))%mod);
+        // }
+        long long a=k;
+        long long b=((k+(k*(k-1)))%mod);
+        
+        for(int i=3;i<=n;i++)
+        {
+            long long same=(a*(k-1)%mod);
+            long long diff=(b*(k-1)%mod);
+            long long ans=((same + diff)%mod);
+             a=b;
+             b=ans;
+        }
+        return b;
+    }
+    long long countWays(int n, int k){
+       
+        return solve(n,k);
+    }
+};
