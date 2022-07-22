@@ -1,0 +1,76 @@
+QUES : Hungry Chef
+
+Chef is very hungry. So, Chef goes to a shop selling burgers. The shop has 22 types of burgers:
+
+Normal burgers, which cost XX rupees each
+Premium burgers, which cost YY rupees each (where Y \gt XY>X)
+Chef has RR rupees. Chef wants to buy exactly NN burgers. He also wants to maximize the number of premium burgers he buys. Determine the number of burgers of both types Chef must buy.
+
+Output -1−1 if it is not possible for Chef to buy NN burgers.
+
+Input Format
+The first line contains a single integer TT — the number of test cases. Then the test cases follow.
+The first and only line of each test case contains four space-separated integers XX, YY, NN and RR — the cost of a normal burger, the cost of a premium burger, the number of burgers Chef wants to buy and the amount of money Chef has.
+Output Format
+For each test case, output on a new line two integers: the number of normal burgers and the number of premium burgers Chef must buy satisfying the given conditions.
+
+Output -1−1 if he cannot buy NN burgers.
+
+Constraints
+1 \leq T \leq 10^41≤T≤10 
+4
+ 
+1 \le X \lt Y \le 10001≤X<Y≤1000
+1 \le N \le 10^61≤N≤10 
+6
+ 
+1 \le R \le 10^91≤R≤10 
+9
+ 
+Sample 1:
+
+Input
+4
+2 10 4 12
+4 8 10 50
+99 100 5 10
+9 10 10 200
+
+Output
+4 0
+8 2
+-1
+0 10
+
+Code ::
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int x,y,n,r;
+	    cin>>x>>y>>n>>r;
+	    if(r/y>=n)
+	    {
+	        cout<<"0"<<" "<<n<<endl;
+	    }
+	    else if(r/x<n)
+	    {
+	        cout<<"-1"<<endl;
+	    }
+	    else
+	    {
+	        int k=(r-(y*n))/(x-y);
+	        if((r-(y*n))%(x-y))
+	        {
+	            k++;
+	        }
+	        cout<<k<<" "<<n-k<<endl;
+	    }
+	}
+	return 0;
+}
