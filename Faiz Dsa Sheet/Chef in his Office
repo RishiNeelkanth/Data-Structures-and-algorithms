@@ -28,7 +28,7 @@ ay)+7(Friday)=39
 
 CODE :
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -36,13 +36,10 @@ int main() {
 	cin>>t;
 	while(t--)
 	{
-	    long long a,b,n;
-	    cin>>a>>b>>n;
-	    if(a==b)
-	    {
-	        cout<<"-1"<<endl;
-	    }
-	    
+	    int x,y;
+	    cin>>x>>y;
+	    int sum=((4*x)+y);
+	    cout<<sum<<endl;
 	}
 	return 0;
 }
