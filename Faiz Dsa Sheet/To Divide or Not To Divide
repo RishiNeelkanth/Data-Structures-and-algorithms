@@ -1,0 +1,58 @@
+QUEES : To Divide or Not To Divide
+
+Alice likes all the numbers which are divisible by AA. Bob does not like the numbers which are divisible by BB and likes all the remaining numbers. 
+Determine the smallest number greater than or equal to NN which is liked by both Alice and Bob. Output -1−1 if no such number exists.
+
+Sample 1:
+Input
+3
+5 2 11
+4 3 24
+7 7 100
+Output
+15
+28
+-1
+
+CODE :
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long a,b,n;
+	    cin>>a>>b>>n;
+	    if(a%b==0)
+	    {
+	        cout<<"-1"<<endl;
+	    }
+	    else 
+	    {
+	        if(n%a==0)
+	        {
+	            int temp=n;
+	            if(n%b==0)
+	            {
+	                temp=temp+a;
+	            }
+	            cout<<temp<<endl;
+	        }
+	        else if(n%a!=0)
+	        {
+	            int temp=(n/a);
+	            temp++;
+	            if((temp*a)%b==0)
+	            {
+	               temp++;
+	            }
+	            cout<<temp*a<<endl;
+	        }
+	    }
+	    
+	}
+	return 0;
+}
