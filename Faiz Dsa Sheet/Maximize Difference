@@ -1,0 +1,58 @@
+QUES : Maximize Difference
+
+Chef has two numbers NN and MM. He calls a pair of numbers (A, B)(A,B) good if it satisfies the following conditions:
+*1≤A,B≤M
+*gcd(A,B)≥N
+Chef wants to find a good pair (A, B)(A,B) such that the value of |A - B|∣A−B∣ is maximized. Can you help Chef? (Here |X|∣X∣ represents the absolute value of XX).
+If there are multiple good pairs for which the value of |A - B|∣A−B∣ is maximized, you can print any of them. It can be proved that under the given constraints,
+at least one good pair always exists.
+
+CODE:
+
+#include <bits/stdc++.h>
+using namespace std;
+int mod=1000000007;
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long N,M;
+	    cin>>N>>M;
+	    long long a=N;
+	    long long b=0;
+	    long long maxi=0;
+	    long long aa=a;
+	    long long x=0;
+	    long long y=0;
+	    if(M-N<N)
+	    {
+	        for(int i=N;i<=M;i++)
+	        {
+	            a=i;
+	            b=M-(M%i);
+	             if(abs(a-b)>maxi)
+	                {
+	                    maxi=abs(a-b);
+	                    x=a;
+	                    y=b;
+	                }
+	        }
+	        cout<<a<<" "<<b<<endl;
+	    }
+	    else{
+	        while(a<=2*N)
+	        {
+	             b=(M/a)*a;
+	        if(abs(a-b)>maxi)
+	        {
+	            maxi=abs(a-b);
+	            aa=a;
+	        }
+	        a++;
+	        }
+	    cout<<aa<<" "<<(M/aa)*aa<<endl;
+	    }
+	}
+	return 0;
+}
