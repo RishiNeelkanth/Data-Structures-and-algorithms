@@ -17,3 +17,74 @@ Output: 4
 ->Example 3:
 Input: nums = [7,7,7,7,7,7,7]
 Output: 1
+
+
+CODE :
+
+***** using memoization
+
+class Solution {
+public:
+    int dp[2501][2501];
+    int solve (int n,vector<int> &nums,int curr,int prev)
+    {
+        if(curr==n)
+           {
+               return 0;
+           }
+        if(dp[curr][prev+1]!=-1)
+        {
+            return dp[curr][prev+1];
+        }
+        // TAKE
+        int take=0;
+        if(prev==-1|| nums[curr]>nums[prev])
+        {
+            take=1+solve(n,nums,curr+1,curr);
+        }
+        //NOTTAKE
+        int nottake=0;
+        nottake=solve(n,nums,curr+1,prev);
+        return dp[curr][prev+1]=max(take,nottake);
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        memset(dp,-1,sizeof(dp));
+        return solve (n,nums,0,-1);
+    }
+};
+
+
+******* USING TABULATION
+
+
+class Solution
+{
+    public:
+   
+    int solve (int n,int nums[])
+    {
+        vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+        for(int curr=n-1;curr>=0;curr--)
+        {
+            for(int prev=curr-1;prev>=-1;prev--)
+            {
+                //take
+                int take=0;
+                if(prev==-1|| nums[curr]>nums[prev])
+                    {
+                        take=1+dp[curr+1][curr+1];
+                    }
+                //NOTTAKE
+                int nottake=0;
+                nottake=dp[curr+1][prev+1];
+                dp[curr][prev+1]=max(nottake,take);
+            }
+        }
+        return dp[0][0];
+    }
+    int longestSubsequence(int n, int nums[])
+    {
+       return solve (n,nums);
+    }
+};
