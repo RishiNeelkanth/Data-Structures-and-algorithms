@@ -1,0 +1,50 @@
+QUES : Valid Minimum
+
+There are 33 hidden numbers A, B, CA,B,C.
+You somehow found out the values of \min(A, B), \min(B, C),min(A,B),min(B,C), and \min(C, A)min(C,A).
+Determine whether there exists any tuple (A, B, C)(A,B,C) that satisfies the given values of \min(A, B), \min(B, C), \min(C, A)min(A,B),min(B,C),min(C,A).
+
+Input Format
+The first line of input will contain a single integer TT, denoting the number of test cases.
+The first and only line of each test case contains 33 space-separated integers denoting the values of \min(A, B), \min(B, C),min(A,B),min(B,C), and \min(C, A)min(C,A).
+
+Output Format
+For each test case, output YES if there exists any valid tuple (A, B, C)(A,B,C), and NO otherwise.
+You can print each letter of the output in any case. For example YES, yes, yEs will all be considered equivalent.
+
+
+Sample 1:
+Input
+3
+5 5 5
+2 3 4
+2 2 4
+
+Output
+YES
+NO
+YES
+
+CODE : 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int ma,mb,mc;
+	    cin>>ma>>mb>>mc;
+	    if(min(ma,mb)==min(mb,mc) && min(mb,mc)==min(mc,ma))
+	    {
+	        cout<<"YES"<<endl;
+	    }
+	    else
+	    {
+	        cout<<"NO"<<endl;
+	    }
+	}
+	return 0;
+}
