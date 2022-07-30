@@ -1,0 +1,53 @@
+QUES : Heroes and Villains Battle
+
+There is a battle between heroes and villains going on. You have M heroes, all of them have the same 
+health H. There are N villains, health of the i-th villain is Vi.
+
+When a hero, with health H battles a villain with health Vi, one of the three scenarios can happen:
+if H > Vi: The villain is defeated, and the health of the hero is decreased by Vi
+if H < Vi: The villain wins, his health is not affected, and the hero is no longer able to fight.
+if H = Vi: Both are considered defeated, and neither can fight.
+
+The heroes start fighting villains one by one in the same order, first villain 1 then villain 2 and so on. It 
+might be possible that before defeating all the villains, all the heroes are defeated. Therefore, to ensure 
+the victory of the heroes, you want to remove some villains from the front.
+Your task is to find the minimum number of villains you need to remove from the front such that the 
+victory of the heroes is guaranteed.
+Note: If in the last battle, both the hero and villain are defeated and no more heroes or villains remain, it 
+would still be considered a victory since all the villains are defeated
+
+
+CODE :
+
+#include <iostream>
+using namespace std;
+
+int ans(int arr[], int n, int m, int h){
+    int sum=0;
+    for(int i=n-1;i>=0;i--)
+    {
+        sum+=arr[i];
+        if(sum>=(m*h))
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    int n;//number of villians.
+    cin>>n;
+    int m ; //number of heroes
+    cin>>m;
+    int h;//health of hero.
+    cin>>h;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];//health of villians
+    }
+    cout<<ans(arr,n,m,h)<<endl;
+    return 0;
+}
