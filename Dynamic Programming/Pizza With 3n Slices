@@ -21,4 +21,12 @@ Explanation: Pick pizza slice of size 8 in each turn. If you pick slice with siz
 
 CODE :
 
-******** 
+******** Using memoization
+
+
+
+
+
+
+********** Using tabulation
+
