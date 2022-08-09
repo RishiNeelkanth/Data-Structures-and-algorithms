@@ -1,5 +1,6 @@
 QUES : Zuma Game
 
+
 You are playing a variation of the game Zuma.
 In this variation of Zuma, there is a single row of colored balls on a board,where each ball can be colored red 'R', yellow 'Y', blue 'B', green 'G', or white 'W'. 
 You also have several colored balls in your hand.
@@ -43,5 +44,6 @@ Explanation: To make the board empty:
  
  
  CODE :
+ Using Memoization
  
  
