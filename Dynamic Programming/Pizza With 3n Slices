@@ -45,8 +45,8 @@ public:
         int k=slices.size();
         vector<vector<int>> dp(k,vector<int>(((k/3)+1),-1));
         int case1=solve(0,k-2,slices,k/3,dp);
-        vector<vector<int>> dpp(k,vector<int>(((k/3)+1),-1));
-        int case2=solve(1,k-1,slices,k/3,dpp);
+        vector<vector<int>> dpp(k,vector<int>(((k/3)+1),-1)); // we have made it again as dpp which is same as dp bcz dp will get updated when case1 function will run
+        int case2=solve(1,k-1,slices,k/3,dpp);                           and we need a 2d vector with all value as -1
         return max(case1,case2);
     }
 };
