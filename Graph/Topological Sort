@@ -60,13 +60,13 @@ class Solution
 	            topsort(i,vis,st,adj);
 	        }
 	    }
-	    vector<int> print;
+	    vector<int> ans;
 	    while(!st.empty())
 	    {
-	        print.push_back(st.top());
+	        ans.push_back(st.top());
 	        st.pop();
 	    }
-	    return print;
+	    return ans;
 	}
 };
 
@@ -95,12 +95,12 @@ class Solution
 	            q.push(i);
 	        }
 	    }
-	    vector<int> print;
+	    vector<int> ans;
 	    while(!q.empty())
 	    {
 	        int node=q.front();
 	        q.pop();
-	        print.push_back(node);
+	        ans.push_back(node);
 	        for(auto it : adj[node])
 	        {
 	            indegree[it]--;
@@ -110,7 +110,7 @@ class Solution
 	            }
 	        }
 	    }
-	    return print;
+	    return ans;
 	}
 };
 
