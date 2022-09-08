@@ -1,0 +1,86 @@
+QUES : kruskal's Algorithm(MST)
+
+Given a weighted, undirected and connected graph of V vertices and E edges. The task is to find the sum of weights of the edges of the Minimum Spanning Tree.
+
+ 
+
+->Example 1:
+Input:
+Output:
+4
+Explanation:
+The Spanning Tree resulting in a weight
+of 4 is shown above.
+
+
+->Example 2:
+Input:
+Output:
+5
+Explanation:
+Only one Spanning Tree is possible
+which has a weight of 5.
+
+CODE :
+USING Kruskal Algorithm (disjoint set)
+
+vector<int> parent,size;
+	void ds(int s)
+	{
+	    for(int i=0;i<=s;i++)
+	    {
+	        parent.push_back(i);
+	        size.push_back(1);
+	    }
+	}
+	int findParent(int node)
+	{
+	    if(parent[node]==node){ return node;}
+	    return parent[node]=findParent(parent[node]);
+	}
+	void unionBySize(int node1,int node2)
+	{
+	    int parent1=findParent(node1);
+	    int parent2=findParent(node2);
+	    if(parent1==parent2) return ;
+	    if(size[parent1]>size[parent2])
+	    {
+	        parent[parent2]=parent1;
+	        size[parent1]+=size[parent2];
+	    }
+	    else
+	    {
+	        parent[parent1]=parent2;
+	        size[parent2]+=size[parent1];
+	    }
+	}
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq; 
+        for(int node=0;node<V;node++)
+        {
+            for(int i=0;i<adj[node].size();i++)
+            {
+                int node1=node;
+                int node2=adj[node][i][0];
+                int weight=adj[node][i][1];
+                pq.push({weight,{node1,node2}});
+            }
+        }
+        int minWeight=0;
+        ds(V);
+        while(!pq.empty())
+        {
+            auto temp=pq.top();
+            pq.pop();
+            int weight=temp.first;
+            int node1=temp.second.first;
+            int node2=temp.second.second;
+            if(findParent(node1)!= findParent(node2))
+            {
+                minWeight+=weight;
+                unionBySize(node1,node2);
+            }
+        }
+        return minWeight;
+    }
