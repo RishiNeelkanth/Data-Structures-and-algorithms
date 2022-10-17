@@ -12,7 +12,6 @@ public:
                 {
                     ans.push_back(i);
                     ans.push_back(j);
-                    return ans;
                 }
             }
         }
