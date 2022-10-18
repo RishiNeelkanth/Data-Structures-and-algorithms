@@ -7,7 +7,7 @@ public:
         vector<int> ans(n);
         for(int i=n-1;i>=0;i--)
         {
-            if( abs(nums[l])>abs(nums[r]))
+            if( nums[l]*nums[l]>nums[r]*nums[r])
             {
                 ans[i]=nums[l]*nums[l];
                 l++;
